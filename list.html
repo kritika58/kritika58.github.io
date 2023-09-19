@@ -27,7 +27,68 @@
             <div id="showDataJSON"></div>
         </section>
     </body>
-
+    <head>
+        <style>
+            /* Center the table on the page */
+            #table-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+    
+            table {
+                width: 75%;
+                border-collapse: collapse;
+                margin: 0 auto; /* Center the table within its container */
+            }
+    
+            th, td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+    
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="table-container">
+            <table id="json-table"></table>
+        </div>
+    
+        <script>
+            /*
+            * RENDERING THE JSON TABLE
+            */
+            fetch('./list_data.json')
+                .then(response => response.json())
+                .then(data => {
+    
+                    var jsonTable = document.getElementById("json-table");
+                    let root = Object.keys(data)[0];
+    
+                    // Create table headers
+                    var headerRow = jsonTable.createTHead().insertRow(0);
+                    for (let header of Object.keys(data[root][0])) {
+                        var th = document.createElement("th");
+                        th.innerHTML = header;
+                        headerRow.appendChild(th);
+                    }
+    
+                    // Populate the table with data
+                    for (let item of data[root]) {
+                        var row = jsonTable.insertRow(-1);
+                        for (let key in item) {
+                            var cell = row.insertCell(-1);
+                            cell.innerHTML = item[key];
+                        }
+                    }
+                });
+        </script>
+    </body>
     <script>
 
         /*
