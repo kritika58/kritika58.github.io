@@ -1,97 +1,94 @@
-<!DOCTYPE HTML>  
-<html>  
-    <header>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="table_style.css">
-        <title>My Webpage Title</title>
-    </header>
-    <body>  
-        <!---Navigation--->
-        <!--This section of code defines the navigation bar at the top of the page.  The classes used here are defined in the style.css file.-->
-        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <!--This code defines the "My Webpage" link in the top right corner of the navigation pane-->
-                <a class="navbar-brand" href="./index.html">My Webpage</a>
-                <!--This code defines the "List" link in the top left corner of the navigation pane-->
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./list.html">Restaurant Recommendations</a></li>
-                </ul>
-            </div>
-        </nav>
-        <!--This code creates the middle section of the webpage-->
-        <header class="masthead bg-primary text-white text-center">
-            <h1>My Restaurant Recommendations for India</h1>
-        </header>
-        <!--Here is where the table will be loaded in.  The actual table will be loaded in JavaScript.-->
-        <section class="mt-5 text-center">
-            <div id="showDataJSON"></div>
-        </section>
-    </body>
-    <head>
-        <style>
-            /* Center the table on the page */
-            #table-container {
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Webpage Title</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="table_style.css">
+    <style>
+        /* Center the table on the page */
+        #table-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 0px;
-            }
-    
-            table {
-                width: 75%;
-                border-collapse: collapse;
-                margin: 0 auto; /* Center the table within its container */
-            }
-    
-            th, td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-    
-            th {
-                background-color: #f2f2f2;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="table-container">
-            <table id="json-table"></table>
+            height: 20px; /* Adjust the height to reduce space above the table */
+        }
+
+        table {
+            width: 75%;
+            border-collapse: collapse;
+            margin: 0 auto; /* Center the table horizontally */
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">My Webpage</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./list.html">Restaurant Recommendations</a></li>
+            </ul>
         </div>
-    
-        <script>
-           /*
-            * RENDERING THE JSON TABLE
-            * Get JSON data from file
-            * Get headers from retrieved data
-            * Set headers for table
-            * Add data to table
-            * Add table to DOM
-            */
-            fetch('./list_data.json')
-                .then(response => response.json())
-                .then(data => {
-    
-                    var jsonTable = document.getElementById("json-table");
-                    let root = Object.keys(data)[0];
-    
-                    // Create table headers
-                    var headerRow = jsonTable.createTHead().insertRow(0);
-                    for (let header of Object.keys(data[root][0])) {
-                        var th = document.createElement("th");
-                        th.innerHTML = header;
-                        headerRow.appendChild(th);
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead bg-primary text-white text-center">
+        <h1>My Restaurant Recommendations for India</h1>
+    </header>
+
+    <!-- Table Container -->
+    <div id="table-container">
+        <table id="json-table"></table>
+    </div>
+
+    <!-- JavaScript Code -->
+    <script>
+        /*
+        * RENDERING THE JSON TABLE
+        * Get JSON data from file
+        * Get headers from retrieved data
+        * Set headers for table
+        * Add data to table
+        * Add table to DOM
+        */
+        fetch('./list_data.json')
+            .then(response => response.json())
+            .then(data => {
+
+                var jsonTable = document.getElementById("json-table");
+                let root = Object.keys(data)[0];
+
+                // Create table headers
+                var headerRow = jsonTable.createTHead().insertRow(0);
+                for (let header of Object.keys(data[root][0])) {
+                    var th = document.createElement("th");
+                    th.innerHTML = header;
+                    headerRow.appendChild(th);
+                }
+
+                // Populate the table with data
+                for (let item of data[root]) {
+                    var row = jsonTable.insertRow(-1);
+                    for (let key in item) {
+                        var cell = row.insertCell(-1);
+                        cell.innerHTML = item[key];
                     }
-    
-                    // Populate the table with data
-                    for (let item of data[root]) {
-                        var row = jsonTable.insertRow(-1);
-                        for (let key in item) {
-                            var cell = row.insertCell(-1);
-                            cell.innerHTML = item[key];
-                        }
-                    }
-                });
-        </script>
-    </body>
+                }
+            });
+    </script>
+</body>
 </html>
