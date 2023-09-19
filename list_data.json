@@ -2,21 +2,52 @@
 	"Recommendations": [
 		{
 			"Name": "Bologna",
-			"Area": "Indiranagar",
+			"Area": "Indiranagar, Bangalore",
 			"Rating": "9/10",
 			"Best Dish": "Cheese & Spinach Ravioli"
 		},
 		{
-			"Title": "Casino Royale",
-			"Director": "Martin Campbell",
-			"Rating": "PG-13",
-			"Year": "2006"
+			"Name": "Thyme & Whisk",
+			"Area": "Sarjapur, Bangalore",
+			"Rating": "8.5/10",
+			"Best Dish": "Honey Chilli Lotus Stem"
 		},
 		{
-			"Title": "The Dark Knight",
-			"Director": "Christopher Nolan",
-			"Rating": "PG-13",
-			"Year": "2008"
+			"Name": "Ironhill",
+			"Area": "Marathahalli, Bangalore",
+			"Rating": "8/10",
+			"Best Dish": "Apple Cider Beer"
 		}
+		{
+			"Name": "Big Chill Cakery",
+			"Area": "DLF Cyber Hub, Gurgaon",
+			"Rating": "10/10",
+			"Best Dish": "Lemon Blueberry Cheesecake"
+		}
+		{
+			"Name": "Oh Cheat Day!",
+			"Area": "Vellore",
+			"Rating": "9/10",
+			"Best Dish": "Brownies"
+		}
+		{
+			"Name": "Bologna",
+			"Area": "Indiranagar",
+			"Rating": "9/10",
+			"Best Dish": "Cheese & Spinach Ravioli"
+		}
+		{
+			"Name": "Burma Burma",
+			"Area": "Indiranagar, Bangalore",
+			"Rating": "10/10",
+			"Best Dish": "Signature Burmese Khow Suey"
+		}
+		{
+			"Name": "Amintri",
+			"Area": "MG Road, Bangalore",
+			"Rating": "10/10",
+			"Best Dish": "Lotus Biscoff Pull-Up Cake"
+		}
+
 	]
 }
